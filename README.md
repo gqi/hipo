@@ -26,9 +26,20 @@ sumstats = list()
 for (trait in traitvec){
     sumstats[[trait]] = read_delim(paste0('blood_lipid_data/jointGwasMc_', trait, '.txt'), delim = '\t') %>% filter(rsid!='.') # Remove SNPs without an rs number.
 }
+```
 
-3. Preprocess the data
+3. Preprocess the data and transform them into data frames with 9 columns:
+rsid: RS number of SNPs.
+A1: effect allele.
+A2: reference allele.
+N: sample size.
+z: z-statistic.
+pval: p-value.
+chr: chromosome.
+bp: physical position.
+freqA1: allele frequency of A1.
 
+SNP filtering is conducted based on LD Hub quality control guideline. We remove SNPs satisfying: SNP filtering: remove SNPs with 1) in HLA regeion; 2) with $z^2>80$; 3) with N less than the 90th percentile of the sample size; 4) MAF<0.05.
 ```{r}
 for (trait in traitvec){
     sumstats[[trait]] = sumstats[[trait]] %>%
@@ -39,4 +50,12 @@ for (trait in traitvec){
         filter(!(chr==6 & bp>26e6 & bp<34e6) & (z^2<=80) & (N>=0.67*quantile(N,0.9)) & (freqA1>=0.05 & freqA1<=0.95))
     print(trait)
 }
+```
+
+4. Implement HIPO
+```{r}
+library(hipo)
+res = hipo(sumstats, out.path = "/Users/guanghaoqi/dropbox/High_D_trait/miscellaneous/test_data", maf.thr = 0.05, HIPOD.num = 4, ldsc.path = "~/documents/software/ldsc", python.path = '/Users/guanghaoqi/anaconda2/bin/', mergeallele = TRUE, truncate = NULL)
+
+```
 
