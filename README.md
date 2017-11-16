@@ -1,10 +1,10 @@
 # hipo
 
-hipo is an R package that performs heritability informed power optimization (HIPO)<sup>1<\sup> for conducting multi-trait association analysis on summary level data.
+hipo is an R package that performs heritability informed power optimization (HIPO)<sup>1</sup> for conducting multi-trait association analysis on summary level data.
 
 ### Installing the package.
 
-Before using this package, you need to install the LDSC software that performs LD score regression<sup>2,3<\sup> to estimate heritability and genetic correlation. Click [here](https://github.com/bulik/ldsc) for LDSC. You must have Python and all the Python packages required by LDSC. LDSC recommends installing [Anaconda](https://store.continuum.io/cshop/anaconda/) which comes with all the required Python packages.
+Before using this package, you need to install the LDSC software that performs LD score regression<sup>2,3</sup> to estimate heritability and genetic correlation. Click [here](https://github.com/bulik/ldsc) for LDSC. You must have Python and all the Python packages required by LDSC. LDSC recommends installing [Anaconda](https://store.continuum.io/cshop/anaconda/) which comes with all the required Python packages.
 
 ### Example 
 
