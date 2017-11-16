@@ -38,8 +38,6 @@ pval: p-value.
 chr: chromosome.
 bp: physical position.
 freqA1: allele frequency of A1.
-
-SNP filtering is conducted based on LD Hub quality control guideline. We remove SNPs satisfying: SNP filtering: remove SNPs with 1) in HLA regeion; 2) with $z^2>80$; 3) with N less than the 90th percentile of the sample size; 4) MAF<0.05.
 ```{r}
 for (trait in traitvec){
     sumstats[[trait]] = sumstats[[trait]] %>%
@@ -47,7 +45,6 @@ for (trait in traitvec){
         mutate(chr = as.integer(gsub('chr', '',sapply(position, function(x) x[1]))), bp = as.integer(sapply(position, function(x) x[2]))) %>%
         mutate(z = beta/se, pval = 2*(1-pnorm(abs(z))) , A1 = toupper(A1), A2 = toupper(A2)) %>%
         select(rsid, A1, A2, N, z, pval, chr, bp, freqA1 = Freq.A1.1000G.EUR) %>%
-        filter(!(chr==6 & bp>26e6 & bp<34e6) & (z^2<=80) & (N>=0.67*quantile(N,0.9)) & (freqA1>=0.05 & freqA1<=0.95))
     print(trait)
 }
 ```
