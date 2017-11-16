@@ -21,10 +21,22 @@ Once you have installed and loaded the package, here's an example to guide you t
 rm(list=ls())
 library(readr)
 library(dplyr)
-
 traitvec = c('LDL', 'HDL', 'TG', 'TC') # Following the order on the consortium website
 sumstats = list()
 for (trait in traitvec){
     sumstats[[trait]] = read_delim(paste0('blood_lipid_data/jointGwasMc_', trait, '.txt'), delim = '\t') %>% filter(rsid!='.') # Remove SNPs without an rs number.
 }
+
+3. Preprocess the data
+
 ```{r}
+for (trait in traitvec){
+    sumstats[[trait]] = sumstats[[trait]] %>%
+        mutate(position = strsplit(SNP_hg19, split = ':')) %>%
+        mutate(chr = as.integer(gsub('chr', '',sapply(position, function(x) x[1]))), bp = as.integer(sapply(position, function(x) x[2]))) %>%
+        mutate(z = beta/se, pval = 2*(1-pnorm(abs(z))) , A1 = toupper(A1), A2 = toupper(A2)) %>%
+        select(rsid, A1, A2, N, z, pval, chr, bp, freqA1 = Freq.A1.1000G.EUR) %>%
+        filter(!(chr==6 & bp>26e6 & bp<34e6) & (z^2<=80) & (N>=0.67*quantile(N,0.9)) & (freqA1>=0.05 & freqA1<=0.95))
+    print(trait)
+}
+
