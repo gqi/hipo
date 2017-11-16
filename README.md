@@ -51,9 +51,9 @@ for (trait in traitvec){
 
 4. Implement HIPO
 Change the directory arguments before running the code below:
-+ out.path: the directory where you want the intermediate LDSC output files to be stored.
-+ ldsc.path: the directory that stores the LDSC package. We will be calling LDSC from there.
-+ python.path: the directory of the Python version you want to use. If you install Anaconda 2 on a Mac computer, this directory is typically `/Users/USER_NAME/anaconda2/bin/`, with `USER_NAME` replaced by your own Mac user name. This may depend on your Anaconda installation options. `{python.path} can be unspecified. But in this case, your default version of Python must have all the required packages.
++ `out.path`: the directory where you want the intermediate LDSC output files to be stored.
++ `ldsc.path`: the directory that stores the LDSC package. We will be calling LDSC from there.
++ `python.path`: the directory of the Python version you want to use. If you install Anaconda 2 on a Mac computer, this directory is typically `/Users/USER_NAME/anaconda2/bin/`, with `USER_NAME` replaced by your own Mac user name. This may depend on your Anaconda installation options. `{python.path} can be unspecified. But in this case, your default version of Python must have all the required packages.
 
 ```{r}
 library(hipo)
