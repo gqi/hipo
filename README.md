@@ -29,15 +29,15 @@ for (trait in traitvec){
 ```
 
 3. Preprocess the data and transform them into data frames with 9 columns:
-rsid: RS number of SNPs.
-A1: effect allele.
-A2: reference allele.
-N: sample size.
-z: z-statistic.
-pval: p-value.
-chr: chromosome.
-bp: physical position.
-freqA1: allele frequency of A1.
++ rsid: RS number of SNPs.
++ A1: effect allele.
++ A2: reference allele.
++ N: sample size.
++ z: z-statistic.
++ pval: p-value.
++ chr: chromosome.
++ bp: physical position.
++ freqA1: allele frequency of A1.
 ```{r}
 for (trait in traitvec){
     sumstats[[trait]] = sumstats[[trait]] %>%
@@ -50,9 +50,14 @@ for (trait in traitvec){
 ```
 
 4. Implement HIPO
+Change the directory arguments before running the code below:
++ out.path: the directory where you want the intermediate LDSC output files to be stored.
++ ldsc.path: the directory that stores the LDSC package. We will be calling LDSC from there.
++ python.path: the directory of the Python version you want to use. If you install Anaconda 2 on a Mac computer, this directory is typically "/Users/USER_NAME/anaconda2/bin/", with USER_NAME replaced by your own Mac user name. This may depend on your Anaconda installation options. ```{r python.path} can be unspecified. But in this case, your default version of Python must have all the required packages.
+
 ```{r}
 library(hipo)
-res = hipo(sumstats, out.path = "/Users/guanghaoqi/dropbox/High_D_trait/miscellaneous/test_data", maf.thr = 0.05, HIPOD.num = 4, ldsc.path = "~/documents/software/ldsc", python.path = '/Users/guanghaoqi/anaconda2/bin/', mergeallele = TRUE, truncate = NULL)
+res = hipo(sumstats, out.path = "PATH_TO_STORE_LDSC_OUTPUT_FILES", maf.thr = 0.05, HIPOD.num = 4, ldsc.path = "PATH_TO_LDSC", python.path = "PATH_TO_PYTHON", mergeallele = TRUE, truncate = NULL)
 
 ```
 
