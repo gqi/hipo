@@ -1,10 +1,10 @@
 # hipo
 
-hipo is an R package that performs heritability informed power optimization (HIPO) for conducting multi-trait association analysis on summary level data.
+hipo is an R package that performs heritability informed power optimization (HIPO)<sup>1<\sup> for conducting multi-trait association analysis on summary level data.
 
 ### Installing the package.
 
-Before using this package, you need to install the LDSC software that performs LD score regression to estimate heritability and genetic correlation. Click [here](https://github.com/bulik/ldsc) for LDSC. You must have Python and all the Python packages required by LDSC. LDSC recommends installing [Anaconda](https://store.continuum.io/cshop/anaconda/) which comes with all the required Python packages.
+Before using this package, you need to install the LDSC software that performs LD score regression<sup>2,3<\sup> to estimate heritability and genetic correlation. Click [here](https://github.com/bulik/ldsc) for LDSC. You must have Python and all the Python packages required by LDSC. LDSC recommends installing [Anaconda](https://store.continuum.io/cshop/anaconda/) which comes with all the required Python packages.
 
 ### Example 
 
@@ -16,7 +16,7 @@ Once you have installed and loaded the package, here's an example to guide you t
 + [Triglycerides](http://csg.sph.umich.edu/abecasis/public/lipids2013/jointGwasMc_TG.txt.gz)
 + [Total cholesterol](http://csg.sph.umich.edu/abecasis/public/lipids2013/jointGwasMc_TC.txt.gz) 
 
-2. Read the data (I put the summary level data in the folder `blood_lipid_data`).
+2. Read the data (I store the summary level data in the folder `blood_lipid_data`).
 ```{r}
 rm(list=ls())
 library(readr)
@@ -61,4 +61,6 @@ res = hipo(sumstats, out.path = "PATH_TO_STORE_LDSC_OUTPUT_FILES", maf.thr = 0.0
 ```
 
 ### References
-
+1. Qi, Guanghao and Chatterjee, Nilanjan. “Heritability Informed Power Optimization (HIPO) Leads to Enhanced Detection of Genetic Associations Across Multiple Traits.” bioRxiv (2017): 218404.
+2. Bulik-Sullivan, Brendan K., et al. "LD Score regression distinguishes confounding from polygenicity in genome-wide association studies." Nature genetics 47.3 (2015): 291-295.
+3. Bulik-Sullivan, Brendan, et al. "An atlas of genetic correlations across human diseases and traits." Nature genetics 47.11 (2015): 1236-1241.
