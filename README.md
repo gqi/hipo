@@ -16,7 +16,7 @@ Once you have installed and loaded the package, here's an example to guide you t
 + [Triglycerides](http://csg.sph.umich.edu/abecasis/public/lipids2013/jointGwasMc_TG.txt.gz)
 + [Total cholesterol](http://csg.sph.umich.edu/abecasis/public/lipids2013/jointGwasMc_TC.txt.gz) 
 
-2. Read the data
+2. Read the data (I put the summary level data in the folder `{r blood_lipid_data}).
 ```{r}
 rm(list=ls())
 library(readr)
@@ -53,11 +53,12 @@ for (trait in traitvec){
 Change the directory arguments before running the code below:
 + out.path: the directory where you want the intermediate LDSC output files to be stored.
 + ldsc.path: the directory that stores the LDSC package. We will be calling LDSC from there.
-+ python.path: the directory of the Python version you want to use. If you install Anaconda 2 on a Mac computer, this directory is typically "/Users/USER_NAME/anaconda2/bin/", with USER_NAME replaced by your own Mac user name. This may depend on your Anaconda installation options. ```{r python.path} can be unspecified. But in this case, your default version of Python must have all the required packages.
++ python.path: the directory of the Python version you want to use. If you install Anaconda 2 on a Mac computer, this directory is typically `{r "/Users/USER_NAME/anaconda2/bin/"}, with `{r USER_NAME} replaced by your own Mac user name. This may depend on your Anaconda installation options. `{r python.path} can be unspecified. But in this case, your default version of Python must have all the required packages.
 
 ```{r}
 library(hipo)
 res = hipo(sumstats, out.path = "PATH_TO_STORE_LDSC_OUTPUT_FILES", maf.thr = 0.05, HIPOD.num = 4, ldsc.path = "PATH_TO_LDSC", python.path = "PATH_TO_PYTHON", mergeallele = TRUE, truncate = NULL)
-
 ```
+
+### References
 
