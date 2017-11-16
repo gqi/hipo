@@ -61,6 +61,6 @@ res = hipo(sumstats, out.path = "PATH_TO_STORE_LDSC_OUTPUT_FILES", maf.thr = 0.0
 ```
 
 ### References
-1. Qi, Guanghao and Chatterjee, Nilanjan. “Heritability Informed Power Optimization (HIPO) Leads to Enhanced Detection of Genetic Associations Across Multiple Traits.” bioRxiv (2017): 218404.
+1. Qi, Guanghao, and Chatterjee, Nilanjan. “Heritability Informed Power Optimization (HIPO) Leads to Enhanced Detection of Genetic Associations Across Multiple Traits.” bioRxiv (2017): 218404.
 2. Bulik-Sullivan, Brendan K., et al. "LD Score regression distinguishes confounding from polygenicity in genome-wide association studies." Nature genetics 47.3 (2015): 291-295.
 3. Bulik-Sullivan, Brendan, et al. "An atlas of genetic correlations across human diseases and traits." Nature genetics 47.11 (2015): 1236-1241.
