@@ -23,8 +23,7 @@ hipoeigen(sumstats.all, traitvec, coherit.mat, ldscint.mat, HIPOD.num = 2,
 \value{
 A list that contains
 
-sumstats.all = A data.frame containing the merged individual trait summary statistics and the z statistic (z.HIPODx) and p-value (pval.HIPODx) of HIPO components.
-
+\item{sumstats.all}{A data.frame containing the merged individual trait summary statistics and the z statistic (z.HIPODx) and p-value (pval.HIPODx) of HIPO components.}
 \item{coherit.mat}{Heritability-coheritability matrix.}
 \item{ldscint.mat}{Matrix of LD score regression intercepts.}
 \item{eigenvalue}{Eigenvalues from HIPO eigendecomposition. Proportional to the average non-centrality parameter.}

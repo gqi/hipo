@@ -17,6 +17,7 @@
 #' \item{eigenvalue}{Eigenvalues from HIPO eigendecomposition. Proportional to the average non-centrality parameter.}
 #' \item{HIPOD.mat}{A matrix of which the columns are the HIPO components.}
 #'
+#' @import dplyr
 #' @export
 hipoeigen = function(sumstats.all, traitvec, coherit.mat, ldscint.mat, HIPOD.num = 2, truncate = NULL){
 

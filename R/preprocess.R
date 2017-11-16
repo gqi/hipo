@@ -5,6 +5,7 @@
 #' @param sumstats A list of K containing summary statistics for K traits. Each element of the list contains 9 columns：rsid, A1 (effect allele), A2, N (sample size), z (z-statistic), pval, chr (chromosome number), bp (base pair; physical position), freqA1 (allele frequency of A1).
 #' @param maf.thr MAF threshold in SNP QC. SNPs with MAF < maf.thr are removed. Default 0.05.
 #'
+#' @import dplyr
 #' @export
 preprocess = function(sumstats, maf.thr = 0.05){
     # If sumstats is not named, name it.

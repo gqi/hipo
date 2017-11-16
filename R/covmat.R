@@ -13,6 +13,7 @@
 #' @return coherit.mat Genetic covariance matrix.
 #' @return ldscint.mat LD score regression intercept matrix.
 #'
+#' @import dplyr
 #' @export
 covmat = function(sumstats.all, traitvec, out.path, ldsc.path, python.path = NULL, ldscore.path = file.path(ldsc.path,"eur_w_ld_chr/"), mergeallele = TRUE){
     # Add anaconda python to path: for ldsc (no need to do this if the path is already set by the system).

@@ -9,7 +9,7 @@ Description: Perform heritability informed power optimization (HIPO) on GWAS
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
-Imports:
+Import:
     dplyr
 Suggests:
     testthat

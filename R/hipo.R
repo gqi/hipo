@@ -9,6 +9,7 @@
 #' @param mergeallele Whether to merge allele to HapMap 3 SNPs when using LDSC. Default to be TRUE.
 #' @param truncate If NULL, use the full coherit.mat and ldscint.mat; if a decimal, truncate the eigenvectors of ldscint.mat with eigenvalues < truncate*(max eigenvalue of ldscint.mat). Recommended truncate = 0.05.
 #'
+#' @import dplyr
 #' @export
 hipo = function(sumstats, out.path, maf.thr = 0.05, HIPOD.num = 2, ldsc.path = "~/documents/software/ldsc", python.path = NULL, ldscore.path = file.path(ldsc.path,"eur_w_ld_chr/"), mergeallele = TRUE, truncate = NULL){
     temp = preprocess(sumstats, maf.thr)
