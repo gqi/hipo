@@ -15,7 +15,13 @@ preprocess = function(sumstats, maf.thr = 0.05){
 
     # Remove SNPs with sample size < 0.67 * (90 percentile)
     for (trait in names(sumstats)){
-        sumstats[[trait]] = sumstats[[trait]] %>% filter(!(chr==6 & bp>26e6 & bp<34e6) & (z^2<=80) & (N>0.67*quantile(N,0.9)))
+        sumstats[[trait]] = sumstats[[trait]] & filter((z^2<=80) & (N>0.67*quantile(N,0.9)))
+        if (("chr"%in%colnames(sumstats[[trait]]) & ("bp"%in%colnames(sumstats[[trait]])))){
+            sumstats[[trait]] = sumstats[[trait]] %>% filter(!(chr==6 & bp>26e6 & bp<34e6))
+        }
+        if ("freqA1"%in%colnames(sumstats[[trait]])){
+            sumstats[[trait]] = sumstats[[trait]] %>% filter(freqA1>0.05 & freqA1<0.95)
+        }
     }
 
     # Remove missing data, make A1 represent minor allele, remove rare variants
@@ -31,24 +37,22 @@ preprocess = function(sumstats, maf.thr = 0.05){
     # Remove missing data
     sumstats.all = sumstats.all[complete.cases(sumstats.all),]
 
-    # Align the alleles of the first trait such that A1 is the minor allele.
+    # If freqA1 is provided, align the alleles of the first trait such that A1 is the minor allele
     trait = names(sumstats)[1]
-    sumstats.all = sumstats.all %>% rename_(chr = paste0("chr.",trait), bp = paste0("bp.",trait))
-
-    tempA1 = sumstats.all[[paste0('A1.',trait)]]
-    tempA2 = sumstats.all[[paste0('A2.',trait)]]
-    tempz = sumstats.all[[paste0("z.",trait)]]
-    maf = sumstats.all[[paste0("freqA1.",trait)]]
-    # Retrieve indices that needs to be changed
-    inds = sumstats.all[[paste0("freqA1.",trait)]] > 0.5
-    tempA1[inds] = sumstats.all[[paste0('A2.',trait)]][inds]
-    tempA2[inds] = sumstats.all[[paste0('A1.',trait)]][inds]
-    tempz[inds] = -tempz[inds]
-    maf[inds] = 1 - maf[inds]
-
-    sumstats.all = sumstats.all %>% mutate(A1 = tempA1, A2 = tempA2, maf = maf)
-    sumstats.all[[paste0("z.",trait)]] = tempz
-    sumstats.all = sumstats.all %>% filter(maf>maf.thr)
+    if (paste0("freqA1.",trait) %in% colnames(sumstats.all)){
+        tempA1 = sumstats.all[[paste0('A1.',trait)]]
+        tempA2 = sumstats.all[[paste0('A2.',trait)]]
+        tempz = sumstats.all[[paste0("z.",trait)]]
+        # Retrieve indices that needs to be changed
+        inds = sumstats.all[[paste0("freqA1.",trait)]] > 0.5
+        tempA1[inds] = sumstats.all[[paste0('A2.',trait)]][inds]
+        tempA2[inds] = sumstats.all[[paste0('A1.',trait)]][inds]
+        tempz[inds] = -tempz[inds]
+        sumstats.all = sumstats.all %>% mutate(A1 = tempA1, A2 = tempA2)
+        sumstats.all[[paste0("z.",trait)]] = tempz
+    } else{
+        sumstats.all = sumstats.all %>% rename_(A1 = paste0('A1.',trait), A2 = paste0('A2.',trait))
+    }
 
     # Align all alleles to the first trait (A1 is minor allele)
     for (i in 2:length(sumstats)){
@@ -61,7 +65,7 @@ preprocess = function(sumstats, maf.thr = 0.05){
     for (trait in names(sumstats)){
         trait.spec = c(trait.spec, paste0(c("N.", "z.", "pval."), trait))
     }
-    sumstats.all = sumstats.all[,c("rsid", "A1", "A2", "chr", "bp", "maf", trait.spec)]
+    sumstats.all = sumstats.all[,c("rsid", "A1", "A2", trait.spec)]
 
     return(list(sumstats.all = sumstats.all, traitvec = names(sumstats)))
 }

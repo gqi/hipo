@@ -26,7 +26,19 @@ hipo(sumstats, out.path, maf.thr = 0.05, HIPOD.num = 2,
 
 \item{truncate}{If NULL, use the full coherit.mat and ldscint.mat; if a decimal, truncate the eigenvectors of ldscint.mat with eigenvalues < truncate*(max eigenvalue of ldscint.mat). Recommended truncate = 0.05.}
 }
+\value{
+A list that contains
+
+\item{sumstats.all}{A data.frame containing the merged individual trait summary statistics and the z statistic (z.HIPODx) and p-value (pval.HIPODx) of HIPO components.}
+\item{coherit.mat}{Heritability-coheritability matrix.}
+\item{ldscint.mat}{Matrix of LD score regression intercepts.}
+\item{eigenvalue}{Eigenvalues from HIPO eigendecomposition. Proportional to the average non-centrality parameter.}
+\item{HIPOD.mat}{A matrix of which the columns are the HIPO components.}
+}
 \description{
-Heritability Informed Power Optimization (HIPO)
+Performs heritability informed power optimization (HIPO) to conduct powerful association testing across multiple traits.
+}
+\references{
+Qi, Guanghao, and Nilanjan Chatterjee. "Heritability Informed Power Optimization (HIPO) Leads to Enhanced Detection of Genetic Associations Across Multiple Traits." bioRxiv (2017): 218404.
 }
 
