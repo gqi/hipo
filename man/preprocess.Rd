@@ -9,7 +9,7 @@ preprocess(sumstats, maf.thr = 0.05)
 \arguments{
 \item{sumstats}{A list of K containing summary statistics for K traits. Each element of the list contains 9 columns：rsid, A1 (effect allele), A2, N (sample size), z (z-statistic), pval, chr (chromosome number), bp (base pair; physical position), freqA1 (allele frequency of A1).}
 
-\item{maf.thr}{MAF threshold in SNP QC. SNPs with MAF < maf.thr are removed. Default 0.05.}
+\item{maf.thr}{MAF threshold for quality control. SNPs with MAF < maf.thr are removed. Default 0.05, constrained between 0 and 0.5. Only effective when freqA1 column is present in sumstats.}
 }
 \description{
 Preprocess summary statistics for HIPO analysis. Perform SNP filtering and allele merge.

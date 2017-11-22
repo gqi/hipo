@@ -26,12 +26,12 @@ covmat = function(sumstats.all, traitvec, out.path, ldsc.path, python.path = NUL
     }
 
     # Further preprocess the data: randomly simulate signs for z.trait1 (LDSC requires median(z) is small).
-    inds = sample(nrow(sumstats), round(sumstats.all)/2)
+    inds = sample(nrow(sumstats.all), round(nrow(sumstats.all))/2)
     tempA1 = sumstats.all$A1
     sumstats.all$A1[inds] = sumstats.all$A2[inds]
     sumstats.all$A2[inds] = tempA1[inds]
     for (trait in traitvec){
-        sumstats.all[[paste0("pval.",trait)]][inds] = -sumstats.all[[paste0("pval.",trait)]][inds]
+        sumstats.all[[paste0("z.",trait)]][inds] = -sumstats.all[[paste0("z.",trait)]][inds]
     }
 
     # Write files for LDSC

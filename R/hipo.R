@@ -11,6 +11,11 @@
 #' @param mergeallele Whether to merge allele to HapMap 3 SNPs when using LDSC. Default to be TRUE.
 #' @param truncate If NULL, use the full coherit.mat and ldscint.mat; if a decimal, truncate the eigenvectors of ldscint.mat with eigenvalues < truncate*(max eigenvalue of ldscint.mat). Recommended truncate = 0.05.
 #'
+#' @details This function first fits LD score regression to estimate the genetic covariance matrix and the covariance matrix of GWAS parameter estimates.
+#' Suitable eigendecomposition is then performed to find the weights that lead to the largest average non-centrality parameter of the underlying test statistic (HIPO-D1),
+#' as well as subsequent HIPO components. Z-statistics of HIPO components are computed for association testing.
+
+#'
 #' @return A list that contains
 #'
 #' \item{sumstats.all}{A data.frame containing the merged individual trait summary statistics and the z statistic (z.HIPODx) and p-value (pval.HIPODx) of HIPO components.}

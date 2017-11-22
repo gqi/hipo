@@ -38,6 +38,11 @@ A list that contains
 \description{
 Performs heritability informed power optimization (HIPO) to conduct powerful association testing across multiple traits.
 }
+\details{
+This function first fits LD score regression to estimate the genetic covariance matrix and the covariance matrix of GWAS parameter estimates.
+Suitable eigendecomposition is then performed to find the weights that lead to the largest average non-centrality parameter of the underlying test statistic (HIPO-D1),
+as well as subsequent HIPO components. Z-statistics of HIPO components are computed for association testing.
+}
 \references{
 Qi, Guanghao, and Nilanjan Chatterjee. "Heritability Informed Power Optimization (HIPO) Leads to Enhanced Detection of Genetic Associations Across Multiple Traits." bioRxiv (2017): 218404.
 }
