@@ -1,9 +1,17 @@
 #' Preprocess Multi-trait Summary Statistics
 #'
-#' Preprocess summary statistics for HIPO analysis. Perform SNP filtering and allele merge.
+#' @description Preprocesses summary statistics for HIPO analysis. Performs SNP filtering and allele merge.
 #'
-#' @param sumstats A list of K containing summary statistics for K traits. Each element of the list contains 9 columns：rsid, A1 (effect allele), A2, N (sample size), z (z-statistic), pval, chr (chromosome number), bp (base pair; physical position), freqA1 (allele frequency of A1).
-#' @param maf.thr MAF threshold for quality control. SNPs with MAF < maf.thr are removed. Default 0.05, constrained between 0 and 0.5. Only effective when freqA1 column is present in sumstats.
+#' @param sumstats A list of K containing summary statistics for K traits.
+#' Each element is a data frame that contains at least 6 columns：\code{rsid}, \code{A1} (effect allele), \code{A2}, \code{N} (sample size), \code{z} (z-statistic), \code{pval}.
+#' Three optional columns can be provided: \code{chr} (chromosome number), \code{bp} (base pair; physical position), \code{freqA1} (allele frequency of A1);
+#' if provided, SNP filtering will be applied: (1) remove MHC region (26-34Mb of chromosome 6) (2) remove variants with MAF < \code{maf.thr} (see below for \code{maf.thr}).
+#' @param maf.thr MAF threshold for quality control. SNPs with MAF < \code{maf.thr} are removed. Default 0.05, constrained between 0 and 0.5. Only effective when \code{freqA1} is present in \code{sumstats}.
+#'
+#' @return A list that contains
+#'
+#' \item{sumstats.all}{A data.frame containing the summary statistics of all individual traits.}
+#' \item{traitvec}{A vector containing the trait names.}
 #'
 #' @import dplyr
 #' @export

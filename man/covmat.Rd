@@ -8,26 +8,27 @@ covmat(sumstats.all, traitvec, out.path, ldsc.path, python.path = NULL,
   ldscore.path = file.path(ldsc.path, "eur_w_ld_chr/"), mergeallele = TRUE)
 }
 \arguments{
-\item{sumstats.all}{Summary statitics of all traits, first output of preprocess().}
+\item{sumstats.all}{Summary statitics of all individual traits, first output of \code{preprocess()}.}
 
-\item{traitvec}{Vector of trait names, second output of preprocess().}
+\item{traitvec}{Vector of trait names, second output of \code{preprocess()}.}
 
-\item{out.path}{The directory where the LDSC intermediate outputs are stored.}
+\item{out.path}{The path where the LDSC intermediate outputs are stored.}
 
-\item{ldsc.path}{The directory of the LDSC software.}
+\item{ldsc.path}{The path of the LDSC software.}
 
-\item{python.path}{The path of Python, if need to use a version other than the default one.}
+\item{python.path}{The path of Python, if you need to use a version other than the default one.}
 
-\item{ldscore.path}{The path containing the LDSC LD score files. Default to be file.path(ldsc.path,"eur_w_ld_chr/").}
+\item{ldscore.path}{The path containing the LDSC LD score files. Default to be \code{file.path(ldsc.path,"eur_w_ld_chr/")}.}
 
-\item{mergeallele}{Whether to merge allele to HapMap 3 SNPs when using LDSC. Default to be TRUE.}
+\item{mergeallele}{Corresponds to the \code{--merge-allele} flag in LDSC, indicates whether to merge alleles to HapMap 3 SNPs. Default to be \code{TRUE}.}
 }
 \value{
-coherit.mat Genetic covariance matrix.
+A list containing
 
-ldscint.mat LD score regression intercept matrix.
+\item{coherit.mat}{Genetic covariance matrix.}
+\item{ldscint.mat}{LD score regression intercept matrix.}
 }
 \description{
-This function uses LD score regression to estimate the genetic covariance matrix and LDSC intercept matrix, which are needed for HIPO analysis.
+Uses LD score regression to estimate the genetic covariance matrix and LDSC intercept matrix, which are needed for HIPO analysis.
 }
 
