@@ -18,9 +18,9 @@ if provided, SNP filtering will be applied: (1) remove MHC region (26-34Mb of ch
 
 \item{HIPOD.num}{Number of HIPO components for which to calculate z statistics and p-values. Default 2.}
 
-\item{ldsc.path}{The path of the LDSC software.}
+\item{ldsc.path}{The path to LDSC software.}
 
-\item{python.path}{The path of Python, if you need to use a version other than the default one.}
+\item{python.path}{The path to Python, if you need to use a version other than the default one.}
 
 \item{ldscore.path}{The path containing the LDSC LD score files. Default to be \code{file.path(ldsc.path,"eur_w_ld_chr/")}.}
 
@@ -28,7 +28,7 @@ if provided, SNP filtering will be applied: (1) remove MHC region (26-34Mb of ch
 
 \item{mergeallele}{Corresponds to the \code{--merge-allele} flag in LDSC, indicates whether to merge alleles to HapMap 3 SNPs. Default to be \code{TRUE}.}
 
-\item{truncate}{Use only for high-dimensional phenotypes. If \code{NULL}, use the full \code{coherit.mat} and \code{ldscint.mat}; if a decimal, truncate the eigenvectors of ldscint.mat with eigenvalues < truncate*(max eigenvalue of ldscint.mat). Recommended 0.05.}
+\item{truncate}{Used only for high-dimensional phenotypes. If \code{NULL}, use the full \code{coherit.mat} and \code{ldscint.mat}; if a decimal, truncate the eigenvectors of ldscint.mat with eigenvalues < truncate*(max eigenvalue of ldscint.mat). Recommended 0.05.}
 }
 \value{
 A list that contains
@@ -43,7 +43,7 @@ A list that contains
 Performs heritability informed power optimization (HIPO) to conduct powerful association testing across multiple traits.
 }
 \details{
-This function first fits LD score regression to estimate the genetic covariance matrix and the covariance matrix of GWAS parameter estimates.
+This function fits LD score regression to estimate the genetic covariance matrix and the covariance matrix of GWAS parameter estimates.
 Suitable eigendecomposition is then performed to find the weights that lead to the largest average non-centrality parameter of the underlying test statistic (HIPO-D1),
 as well as subsequent HIPO components. Z-statistics of HIPO components are computed for association testing.
 }

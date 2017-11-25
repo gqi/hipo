@@ -8,14 +8,14 @@
 #' if provided, SNP filtering will be applied: (1) remove MHC region (26-34Mb of chromosome 6) (2) remove variants with MAF < \code{maf.thr} (see below for \code{maf.thr}).
 #' @param out.path The path where the LDSC intermediate outputs are stored.
 #' @param HIPOD.num Number of HIPO components for which to calculate z statistics and p-values. Default 2.
-#' @param ldsc.path The path of the LDSC software.
-#' @param python.path The path of Python, if you need to use a version other than the default one.
+#' @param ldsc.path The path to LDSC software.
+#' @param python.path The path to Python, if you need to use a version other than the default one.
 #' @param ldscore.path The path containing the LDSC LD score files. Default to be \code{file.path(ldsc.path,"eur_w_ld_chr/")}.
 #' @param maf.thr MAF threshold for quality control. SNPs with MAF < \code{maf.thr} are removed. Default 0.05, constrained between 0 and 0.5. Only effective when \code{freqA1} is present in \code{sumstats}.
 #' @param mergeallele Corresponds to the \code{--merge-allele} flag in LDSC, indicates whether to merge alleles to HapMap 3 SNPs. Default to be \code{TRUE}.
-#' @param truncate Use only for high-dimensional phenotypes. If \code{NULL}, use the full \code{coherit.mat} and \code{ldscint.mat}; if a decimal, truncate the eigenvectors of ldscint.mat with eigenvalues < truncate*(max eigenvalue of ldscint.mat). Recommended 0.05.
+#' @param truncate Used only for high-dimensional phenotypes. If \code{NULL}, use the full \code{coherit.mat} and \code{ldscint.mat}; if a decimal, truncate the eigenvectors of ldscint.mat with eigenvalues < truncate*(max eigenvalue of ldscint.mat). Recommended 0.05.
 #'
-#' @details This function first fits LD score regression to estimate the genetic covariance matrix and the covariance matrix of GWAS parameter estimates.
+#' @details This function fits LD score regression to estimate the genetic covariance matrix and the covariance matrix of GWAS parameter estimates.
 #' Suitable eigendecomposition is then performed to find the weights that lead to the largest average non-centrality parameter of the underlying test statistic (HIPO-D1),
 #' as well as subsequent HIPO components. Z-statistics of HIPO components are computed for association testing.
 #'
