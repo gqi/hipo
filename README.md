@@ -4,7 +4,19 @@ hipo is an R package that performs heritability informed power optimization (HIP
 
 ### Installing the package.
 
-Before using this package, you need to install the LDSC software that performs LD score regression<sup>2,3</sup> to estimate heritability and genetic correlation. Click [here](https://github.com/bulik/ldsc) for LDSC. You must have Python and all the Python packages required by LDSC. LDSC recommends installing [Anaconda](https://store.continuum.io/cshop/anaconda/) which comes with all the required Python packages.
+Before using this package, you need to install the LDSC software that performs LD score regression<sup>2,3</sup> to estimate heritability and genetic correlation. Click [here](https://github.com/bulik/ldsc) for LDSC. You must have Python and all the Python packages required by LDSC. LDSC recommends installing [Anaconda 2](https://store.continuum.io/cshop/anaconda/) which comes with all the required Python packages.
+
+You can use the LD score files and HapMap 3 SNP list provided by LD Hub. Download and unzip by running the following code in Terminal
+```bash
+wget https://data.broadinstitute.org/alkesgroup/LDSCORE/eur_w_ld_chr.tar.bz2
+wget https://data.broadinstitute.org/alkesgroup/LDSCORE/w_hm3.snplist.bz2
+bunzip2 eur_w_ld_chr.tar.bz2
+tar -xvf eur_w_ld_chr.tar
+bunzip2 w_hm3.snplist.bz2
+```
+and put them in the ldsc folder. You can also specify your own LD score file later in the function.
+
+The `dplyr` packages is also required. Type `install.packages("dplyr")` in the R console to install.
 
 ### Example 
 
@@ -16,7 +28,7 @@ Once you have installed and loaded the package, here's an example to guide you t
 + [Triglycerides](http://csg.sph.umich.edu/abecasis/public/lipids2013/jointGwasMc_TG.txt.gz)
 + [Total cholesterol](http://csg.sph.umich.edu/abecasis/public/lipids2013/jointGwasMc_TC.txt.gz) 
 
-2. Read the data (I store the summary level data in the folder `blood_lipid_data`).
+2. Read the data (I store the summary level data in the folder `blood_lipid_data`). To run the script below, install `readr` package first by typing `install.packages("readr")` in the R console.
 ```{r}
 rm(list=ls())
 library(readr)
@@ -53,7 +65,7 @@ for (trait in traitvec){
 Change the directory arguments before running the code below:
 + `out.path`: the directory where you want the intermediate LDSC output files to be stored.
 + `ldsc.path`: the directory that stores the LDSC package. We will be calling LDSC from there.
-+ `python.path`: the directory of the Python version you want to use. If you install Anaconda 2 on a Mac computer, this directory is typically `/Users/USER_NAME/anaconda2/bin/`, with `USER_NAME` replaced by your own Mac user name. This may depend on your Anaconda installation options. `{python.path} can be unspecified. But in this case, your default version of Python must have all the required packages.
++ `python.path`: the directory of the Python version you want to use. On a Mac computer, check `~/.bash_profile` file. This may depend on your Anaconda installation options. `{python.path} can be unspecified. But in this case, your default version of Python must have all the required packages.
 
 ```{r}
 library(hipo)
