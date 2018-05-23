@@ -4,6 +4,7 @@
 #'
 #' @param sumstats A list of K containing summary statistics for K traits.
 #' Each element is a data frame that contains at least 6 columns：\code{rsid}, \code{A1} (effect allele), \code{A2}, \code{N} (sample size), \code{z} (z-statistic), \code{pval}.
+#' For case-control studies, \code{N} should be the effective sample size \code{(ncases*ncontrols)/(ncases+ncontrols)}.
 #' Three optional columns can be provided: \code{chr} (chromosome number), \code{bp} (base pair; physical position), \code{freqA1} (allele frequency of A1);
 #' if provided, SNP filtering will be applied: (1) remove MHC region (26-34Mb of chromosome 6) (2) remove variants with MAF < \code{maf.thr} (see below for \code{maf.thr}).
 #' @param out.path The path where the LDSC intermediate outputs are stored.
