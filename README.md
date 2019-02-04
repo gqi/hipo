@@ -72,6 +72,8 @@ library(hipo)
 res = hipo(sumstats, out.path = "PATH_TO_STORE_LDSC_OUTPUT_FILES", maf.thr = 0.05, HIPOD.num = 4, ldsc.path = "PATH_TO_LDSC", python.path = "PATH_TO_PYTHON", mergeallele = TRUE, truncate = NULL)
 ```
 
+Error `KeyError: '[-1 -1 -1 ... -1 -2 -1] not in index'` is usually caused by a new version of pandas. Try revert pandas package to version 0.18.1.
+
 ### References
 1. Qi, Guanghao, and Chatterjee, Nilanjan. "Heritability informed power optimization (HIPO) leads to enhanced detection of genetic associations across multiple traits." bioRxiv (2017): 218404.
 2. Bulik-Sullivan, Brendan K., et al. "LD score regression distinguishes confounding from polygenicity in genome-wide association studies." Nature genetics 47.3 (2015): 291-295.
